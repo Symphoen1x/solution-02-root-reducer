@@ -1,3 +1,4 @@
+/* global cy, Cypress */
 describe('Login spec', () => {
   beforeEach(() => {
     cy.visit('/login');
@@ -49,10 +50,10 @@ describe('Login spec', () => {
 
     // Verify it hits the login endpoint
     cy.wait('@loginRequest');
-    
+
     // Check if redirected to homepage based on header presence etc
     // The homepage might have threads or navigation
-    cy.url().should('eq', Cypress.config().baseUrl + '/');
+    cy.url().should('eq', `${Cypress.config().baseUrl  }/`);
   });
 
   it('should display an error message on wrong credentials', () => {
