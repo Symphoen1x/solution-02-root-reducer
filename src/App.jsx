@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { Routes, Route } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { asyncGetOwnProfile } from './store/authSlice';
 
 import Navbar from './components/Navbar';
@@ -14,7 +14,7 @@ import LoadingIndicator from './components/LoadingIndicator';
 
 function App() {
   const dispatch = useDispatch();
-  const { loading: authLoading } = useSelector((state) => state.auth);
+
   // Optional local state constraint to hold rendering until profile is checked
   const [init, setInit] = React.useState(true);
 
@@ -24,7 +24,7 @@ function App() {
     });
   }, [dispatch]);
 
-  if (init || authLoading) {
+  if (init) {
     return <LoadingIndicator fullPage />;
   }
 

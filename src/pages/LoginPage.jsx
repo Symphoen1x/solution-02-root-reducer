@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { asyncLoginUser, clearError } from '../store/authSlice';
+import { asyncLoginUser } from '../store/authSlice';
 import LoadingIndicator from '../components/LoadingIndicator';
 import styles from './AuthPage.module.css';
 
@@ -15,8 +15,7 @@ function LoginPage() {
 
   useEffect(() => {
     if (authUser) navigate('/');
-    return () => dispatch(clearError());
-  }, [authUser, navigate, dispatch]);
+  }, [authUser, navigate]);
 
   const handleSubmit = (e) => {
     e.preventDefault();

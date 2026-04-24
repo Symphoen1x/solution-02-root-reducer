@@ -17,10 +17,11 @@ export const asyncRegisterUser = createAsyncThunk(
 
 export const asyncLoginUser = createAsyncThunk(
   'auth/login',
-  async ({ email, password }, { rejectWithValue }) => {
+  async ({ email, password }, { dispatch, rejectWithValue }) => {
     try {
       const data = await login({ email, password });
       localStorage.setItem(TOKEN_KEY, data.token);
+      await dispatch(asyncGetOwnProfile());
       return data;
     } catch (error) {
       return rejectWithValue(error.message);
@@ -69,12 +70,14 @@ const authSlice = createSlice({
       })
       .addCase(asyncLoginUser.fulfilled, (state, action) => {
         state.loading = false;
-        state.authUser = action.payload.user;
         state.token = action.payload.token;
+        if (action.payload.user) {
+          state.authUser = action.payload.user;
+        }
       })
       .addCase(asyncLoginUser.rejected, (state, action) => {
         state.loading = false;
-        state.error = action.payload;
+        state.error = action.payload; console.log('ERROR IS', action.payload);
       })
       .addCase(asyncRegisterUser.pending, (state) => {
         state.loading = true;
@@ -85,7 +88,7 @@ const authSlice = createSlice({
       })
       .addCase(asyncRegisterUser.rejected, (state, action) => {
         state.loading = false;
-        state.error = action.payload;
+        state.error = action.payload; console.log('ERROR IS', action.payload);
       })
       .addCase(asyncGetOwnProfile.fulfilled, (state, action) => {
         if (action.payload) {

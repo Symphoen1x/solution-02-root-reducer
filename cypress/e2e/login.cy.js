@@ -16,7 +16,7 @@ describe('Login spec', () => {
     // For this demonstration, we'll try a common dummy credential or just check network
     // We can intercept the API call to mock a successful login response
 
-    cy.intercept('POST', '**/login', {
+    cy.intercept('POST', 'https://forum-api.dicoding.dev/v1/login', {
       statusCode: 200,
       body: {
         status: 'success',
@@ -27,7 +27,7 @@ describe('Login spec', () => {
       }
     }).as('loginRequest');
 
-    cy.intercept('GET', '**/users/me', {
+    cy.intercept('GET', 'https://forum-api.dicoding.dev/v1/users/me', {
       statusCode: 200,
       body: {
         status: 'success',
@@ -57,7 +57,7 @@ describe('Login spec', () => {
 
   it('should display an error message on wrong credentials', () => {
     // Intercept to mock a failed login response
-    cy.intercept('POST', '**/login', {
+    cy.intercept('POST', 'https://forum-api.dicoding.dev/v1/login', {
       statusCode: 400,
       body: {
         status: 'fail',

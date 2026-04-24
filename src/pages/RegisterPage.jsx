@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { asyncRegisterUser, clearError } from '../store/authSlice';
+import { asyncRegisterUser } from '../store/authSlice';
 import LoadingIndicator from '../components/LoadingIndicator';
 import styles from './AuthPage.module.css';
 
@@ -16,8 +16,8 @@ function RegisterPage() {
   const [success, setSuccess] = useState(false);
 
   useEffect(() => {
-    return () => dispatch(clearError());
-  }, [dispatch]);
+    // Component mounted/unmounted
+  }, []);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
