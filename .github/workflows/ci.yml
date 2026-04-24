@@ -19,7 +19,7 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '18'
+          node-version: '20'
 
       - name: Install dependencies
         run: npm install
@@ -35,3 +35,4 @@ jobs:
           start: npm start
           wait-on: 'http://localhost:3000'
           browser: chrome
+          install: false
