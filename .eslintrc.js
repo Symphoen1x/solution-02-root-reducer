@@ -19,6 +19,7 @@ module.exports = {
     'react/react-in-jsx-scope': 'off',
     'react/prop-types': 'warn',
     'react-hooks/rules-of-hooks': 'error',
+    'linebreak-style': 0,
     'react-hooks/exhaustive-deps': 'warn',
   },
   settings: {
