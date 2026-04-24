@@ -8,5 +8,6 @@ module.exports = defineConfig({
     },
     video: false,
     screenshotOnRunFailure: false,
+    supportFile: false,
   },
 });
